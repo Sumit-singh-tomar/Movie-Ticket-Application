@@ -1,0 +1,76 @@
+<style>
+    hr.solid {
+    border-top: 3px solid black;
+  }
+      .maincontainer{
+          width:100vw;
+          height:100vh;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-image: url('/images/loginbg.jpg');
+      }
+  
+      .box{
+          width:65vw;
+          height: auto;
+          background:white;
+          border-radius:20px;
+         padding: 10px;
+      }
+      .innerbox
+      {
+          height:90%;
+          width: 22vw;
+          margin-top: 10px;
+      }
+  
+  </style>
+  <html>
+      <head>
+          <title>User Registration Page</title>
+          <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+          <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>   
+          <script src="/javascripts/picture.js"></script>  
+      </head>
+      <body >
+          <div class="maincontainer" >
+          <div class="box">
+                  <div class="container">
+                      <form action="/admin/user_registration_submit" method="post">
+                        <div class="row" style="background-color: powderblue;"> 
+                            <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        </div>
+    
+  
+                      <div class="row" style="margin-top: 10px;">
+                          <div class="col-sm-5" style="display:flex;justify-content: center; align-items:center;">
+                              <div class="innerbox shadow p-3 mb-5 bg-body rounded" >            
+                                  <h3 style=" margin-top: 20px;">Registration</h3>
+                                  <input type="text" id="user" name="user" class="form-control" style="font-family: Consolas;margin-top: 20px;" required placeholder="Enter Your Full Name">
+                                  <input type="text" id="email" name="email" class="form-control" style="font-family: Consolas;margin-top: 10px;" required placeholder="Enter Email Id">
+                                  <input type="text" id="mobileno" name="mobileno" class="form-control" style="font-family: Consolas;margin-top: 10px;" required placeholder="Enter Mobile Number">
+                                  <input type="password" id="pwd" name="pwd" class="form-control" style="font-family: Consolas;margin-top:10px;" required placeholder="Type Your password">
+                                   <input type="hidden" name="result" id="result">
+                                  <div style="font-family: Consolas;margin-top: 10px;">User Picture :<input type="file" id="picture" name="picture" class="form-control" style="font-family: Consolas;margin-top:10px;"></div>
+                                <div style="display: flex;">
+                                    <div style="width: 50%;"><input style="margin-top: 20px;font-family: Consolas;width:95%;font-size:13;" type="submit" class="btn btn-danger" value="Register"></div>
+                                    <div style="width: 50%;"><a href="/admin/loginpage"><input style="margin-top: 20px;font-family: Consolas;width:95%;font-size:13;" type="button" class="btn btn-danger" value="Login"></a></div>
+                                </div>
+                                  <div style="font-family: Consolas;font-size: 20;display: flex;justify-content:center;margin-top: 10px;color: green;"><%=msg%></div>
+                                  <hr class="solid" style="margin-top: 25px;">
+                                  
+                              </div>
+                          </div>
+                      
+                          <div class="col-sm-7" >
+                             <img src="/images/Inkedoriginal_LI.jpg" style="margin-top: 20px; width: 100%;" >
+                          </div>
+                      </div>
+                  </form>
+                  </div>
+              </div>
+          </div>
+      </body>
+  </html>

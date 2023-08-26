@@ -1,0 +1,84 @@
+<style>
+    .maincontainer{
+        height: 100vh;
+        width: 100vw;
+        background: gainsboro;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{
+        height:auto;
+        width:70%;
+        background: white;
+    }
+</style>
+<html>
+    <head>
+        <title>Movie Interface Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" 
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" 
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>   
+        <script src="/javascripts/state.js"></script>    
+    </head>
+    <body>
+        <div class="maincontainer">
+            <div class="box">
+                <div class="container">
+                    <form action="/movie/record_submit" method="post" enctype="multipart/form-data">
+                    <div class="row" style="background-color: powderblue;"> 
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg"
+                             style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white;display: flex;justify-content: right;margin-top: 3px;">
+                            <a href="/movie/display_records"><input type="button" class="btn btn-secondary" value="&#128065 View Records"></a></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6"><input type="text" required class="form-control" placeholder="Enter movie Name" id="moviename" 
+                            name="moviename"></div>
+                        <div class="col-sm-6"><select class="form-select" id="movietype" name="movietype"><option>-Select Movie type-</option>
+                            <option>Hindi</option><option>English</option></select></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6"><label for="date" class="form-label" style="font-family: Consolas;">Release Date :</label>
+                            <input type="date" required class="form-control" id="date" name="date"></div>
+                        <div class="col-sm-6"><label for="2d" class="form-label" style="font-family: Consolas;">Format :</label><br>
+                            <input type="radio" required class="form-check-input" id="2d" value="2D" name="format" style="margin-left: 20px;">2D 
+                            <input style="margin-left: 20px"; type="radio" required class="form-check-input" value="3D" id="3d" name="format">3D</div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-12"><textarea class="form-control" required id="description" name="description" placeholder="Enter Movie Desciption...."></textarea></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4"><select class="form-select" id="state" name="state"><option>-Select State-</option></select></div>
+                        <div class="col-sm-4"><select class="form-select" id="city" name="city"><option>-Select City-</option></select></div>
+                        <div class="col-sm-4"><select class="form-select" id="cinema" name="cinema"><option>-Select Cinema-</option></select></div>
+                    </div>                    
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-12"><input type="file" class="form-control" id="poster" name="poster"></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-sm-6" style="display: flex; justify-content: center;"><input type="submit" style="width: 100%;" class="btn btn-danger"></div>
+                        <div class="col-sm-6" style="display: flex; justify-content: center;"><input type="reset" style="width: 100%;" class="btn btn-danger"></div>
+                    </div>
+                    </form>
+
+                    <% if(viewstatus==2) { %>
+                        <div style="display: flex; justify-content: center; font-size: 30;font-family: Consolas; color:green">Record Sumbitted Successfully</div>
+                    <% } %>
+                    <% if(viewstatus==1)
+                    {  %>
+                        <div style="display: flex; justify-content: center; font-size: 30;font-family: Consolas; color:red">Something Went Wrong</div>
+                    <% } %>
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>

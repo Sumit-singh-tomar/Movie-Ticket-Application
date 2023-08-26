@@ -1,0 +1,137 @@
+<style>
+    .maincontainer{
+        height: auto;
+        width: 100vw;
+        background: gainsboro;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .tempcontainer
+    {
+        height: 100vh;
+        width: 100vw;
+        background: gainsboro;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{
+        height: auto;
+        width:70%;
+        background: white;
+    }
+    .fontwriting{
+        font-size:18; 
+        font-family:Consolas;
+    }
+</style>
+
+<html>
+    <head>
+        <title>Display All Records</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>   
+        <script src="/javascripts/search.js"></script>
+    </head>
+
+    <body>
+        
+        <% if(data.length==0 || data.length==1)
+        { %>
+            <div class="tempcontainer">
+        <% }
+         else
+        { %>
+        <div class="maincontainer">
+        <% } %>
+            <div class="box">
+                <div class="container">
+                    
+                    <div class="row" style="background-color: powderblue;"> 
+                            <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                            <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white;display: flex;justify-content: right;margin-top: 3px;"><a href="/movie/movieinterface"><input type="button" class="btn btn-secondary" value="&#10010 Add Record"></a></div>
+                    </div> 
+                    
+                    
+                    <% if(data.length==0)
+                    { %>
+                    <div class="row" style="font-size:27; font-family:Consolas;"> 
+                        <div class="col-sm-12" style="margin-top:50px;display:flex; justify-content: center; align-items: center;"><h1>No Record Found....</h1></div>
+                    </div>
+                                          
+                    <% } %>
+
+                    <div class="row" style="margin-top: 40px;">
+                        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center ;"><input type="text" style="width: 50% ;" class="form-control" id="search" name="search" placeholder="&#x1F50D Search Record here..."></div>
+                    </div>
+                  
+                    <div class="row" style="margin-top: 5px;">
+                        <div class="col-sm-12" style="display: flex; justify-content: center; align-items: center; font-family: Consolas;" id="result"></div>
+                    </div>
+
+
+                    <div class="row" style="margin-top: 40px;">
+                        <div class="col-sm-12">
+                            <% data.map((item)=>{  %>
+                            <table class="fontwriting" width="100%"> 
+                            <tr  style="background-color:bisque;"> 
+                            <td>Movie Name : </td>
+                            <td><%=item.moviename %></td>
+                            <td rowspan="9"><img src="/images/<%= item.poster%>" style=" height:350;width:200;"></td>                  
+                            </tr>
+
+                <tr>
+                    <td>Movie Type :</td>
+                    <td><%= item.movietype%></td>
+                </tr>
+
+                <tr  id="releasedate">
+                    <td>Release Date :</td>
+                    <td><%=item.date%></td>
+                </tr>
+
+                <tr>
+                    <td>Format :</td>
+                    <td><%= item.format%></td>
+                </tr>
+
+                <tr>
+                    <td>Desciption :</td>
+                    <td><%= item.description%></td>
+                </tr>
+
+                <tr>
+                    <td>State :</td>
+                    <td><%= item.statename%></td>
+                </tr>
+
+                <tr>
+                    <td>City :</td>
+                    <td><%= item.cityname%></td>
+                </tr>
+
+                <tr>
+                    <td>Cinema :</td>
+                    <td><%= item.cinemaname%></td>
+                </tr>
+
+                <tr>
+                    <td>Action :</td>
+                    <td><a href="/movie/data_for_edit_record?mid=<%=item.movieid%>" style="text-decoration:none;">Edit</a></td>
+                </tr>
+    
+            </table>
+
+            <br><hr><br>
+                   <% }) %>
+                   
+                </div><!--row-->              
+                </div><!--column-->
+                </div><!--container-->
+                </div><!--box-->
+            </div><!--maincontainer-->
+        </div><!--tempcontainer-->
+    </body>
+</html>

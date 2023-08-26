@@ -1,0 +1,120 @@
+<style>
+    .maincontainer{
+        height: 100vh;
+        width: 100vw;
+        background: gainsboro;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .box{
+        height: auto;
+        width:70%;
+        background: white;
+    }
+</style>
+<html>
+    <head>
+        <title>Edit Record Page</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>   
+        <script src="/javascripts/editmovie.js"></script>
+    </head>
+    <body>
+        <div class="maincontainer">
+            <div class="box">
+                <div class="container">
+
+                    <% if(msg==1) { %>
+                    <form action="/movie/update_record" method="post">
+                    <div class="row" style="background-color: powderblue;">
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white;display: flex;justify-content: right;margin-top: 3px;"><a href="/movie/display_records"><input type="button" class="btn btn-secondary" value="&#128065 View Records"></a></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div><input type="hidden" value="<%=data.movieid %>" id="movieid" name="movieid"></div> 
+                        <div class="col-sm-6"><input type="text" value="<%=data.moviename%>" required class="form-control" placeholder="Enter movie Name" id="moviename" name="moviename"></div>
+                        <div class="col-sm-6"><select class="form-select" id="movietype"  name="movietype"><option>-Select Movie type-</option><option selected><%=data.movietype%></option></select></div>
+                    </div>
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-6" id="result"><label for="date" class="form-label" style="font-family: Consolas;">Release Date :</label><input type="datetime" required class="form-control" id="date" name="date"></div>
+                        <div class="col-sm-6"><label for="2d" class="form-label" style="font-family: Consolas;">Format :</label><br><input type="radio" required class="form-check-input" id="2d" value="2D" name="format" style="margin-left: 20px;">2D <input style="margin-left: 20px"; type="radio" required class="form-check-input" value="3D" id="3d" name="format">3D</div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-12"><textarea class="form-control" required id="description" name="description" placeholder="Enter Movie Desciption...."><%=data.description %></textarea></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <div class="col-sm-4"><select class="form-select" id="state" name="state"><option value="<%=data.state %>" selected><%=data.statename %></option></select></div>
+                        <div class="col-sm-4"><select class="form-select" id="city" name="city"><option value="<%=data.city %>"><%=data.cityname %></option></select></div>
+                        <div class="col-sm-4"><select class="form-select" id="cinema" name="cinema"><option value="<%=data.cinema%>"><%=data.cinemaname %></option></select></div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px;">
+                        <input type="hidden" value="<%=data.poster%>" name="oldposter">
+                        <div class="col-sm-12"><a href="/movie/edit_Poster?mid=<%=data.movieid%>&moviename=<%=data.moviename%>&poster=<%=data.poster%>" class="btn btn-outline-primary" role="button" style="text-transform: none;font-size: 17;width: 50%;font-family: Consolas;border-radius: 20px;"><img width="25px" src="/images/editlogo.png" style="margin-bottom:3px; margin-right:10px">Edit Movie Poster</a>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 10px; margin-bottom: 10px;">
+                        <div class="col-sm-6" style="display: flex; justify-content: center;"><input type="submit" style="width: 100%;" class="btn btn-danger" name="btn" value="Edit"></div>
+                        <div class="col-sm-6" style="display: flex; justify-content: center;"><input type="submit" style="width: 100%;" class="btn btn-danger" name="btn" value="Delete"></div> 
+                    </div>
+                    </form>
+                <% } %>
+                    
+
+                <% if(msg==3) { %>
+                    <div class="row" style="background-color: powderblue;">
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white;display: flex;justify-content: right;margin-top: 3px;"><a href="/movie/display_records"><input type="button" class="btn btn-secondary" value="&#128065 View Records"></a></div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+                        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center;font-size:30; font-family:Consolas; color:green">Record Updated Successfully</div>
+                    </div>
+                <% } %>
+
+                
+                <% if(msg==2) { %>
+                    <div class="row" style="background-color: powderblue;">
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white"><a href="/movie/display_records"><input type="button" class="btn btn-secondary" style="margin-left:65%;" value="&#128065 View Records"></a></div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+                        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center;font-size:30;font-family:Consolas; color:red">Something Went Wrong....</div>
+                    </div>
+                <% } %>
+
+                
+                <% if(msg==5) { %>
+                    <div class="row" style="background-color: powderblue;">
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white;display: flex;justify-content: right;margin-top: 3px;"><a href="/movie/display_records"><input type="button" class="btn btn-secondary" value="&#128065 View Records"></a></div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+                        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center;font-size:30; font-family:Consolas; color:green">Record Deleted Successfully</div>
+                    </div>
+                <% } %>
+
+                
+                <% if(msg==4) { %>
+                    <div class="row" style="background-color: powderblue;">
+                        <div class="col-sm-6" style="font-size:27; font-family:Consolas; color:white"><img src="/images/movielogo.jpg" style="width:10%;"> MOVIE RECORD</div>
+                        <div class="col-sm-6" style="font-family:Consolas; color:white"><a href="/movie/display_records"><input type="button" class="btn btn-secondary" style="margin-left:65%;" value="&#128065 View Records"></a></div>
+                    </div>
+                    
+                    <div class="row" style="margin-top: 50px; margin-bottom: 50px;">
+                        <div class="col-sm-12" style="display: flex;justify-content: center;align-items: center;font-size:30;; font-family:Consolas; color:red">Something Went Wrong....</div>
+                    </div>
+                <% } %>
+                </div>
+            </div>
+        </div>        
+    </body>
+</html>
